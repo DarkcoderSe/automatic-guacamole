@@ -4,6 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use App\Jobs\DispatchReport;
+
+
 class DispatchEmail extends Command
 {
     /**
@@ -11,14 +14,14 @@ class DispatchEmail extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'app:dispatch-email';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'command to generate excel and attach as email to dispatch it';
 
     /**
      * Execute the console command.
@@ -27,6 +30,9 @@ class DispatchEmail extends Command
      */
     public function handle()
     {
+        $dispatchReport = new DispatchReport;
+        dispatch($dispatchReport);
+
         return Command::SUCCESS;
     }
 }
